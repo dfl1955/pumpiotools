@@ -23,6 +23,7 @@ echo "$0 installing mongo service"
 bash ${REPO}/make.service
 echo "$0 mongo service installed"
 
+systemctl enable mongod
 service mongod status
 
 exit
