@@ -19,7 +19,11 @@ echo "$0 mongo db installed"
 
 REPO="./pumpiotools"
 
+echo "$0 installing mongo service"
 bash ${REPO}/make.service
+echo "$0 "mongo service installed"
+
+service mongod status
 
 exit
 
