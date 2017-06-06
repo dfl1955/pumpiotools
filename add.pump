@@ -1,0 +1,17 @@
+
+# This code has not been tested
+
+# INSTALL -------------------------
+
+# [ -d /opt/local ] || mkdir /opt/local
+
+# cd /opt/local
+
+# sudo git clone https://github.com/e14n/pump.io.git
+# cd pump.io
+# npm install -g
+#npm test -g
+
+# npm install -g databank-mongodb
+
+# useradd pump

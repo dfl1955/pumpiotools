@@ -1,0 +1,42 @@
+#!/bin/bash
+
+# This code has not been tested
+
+
+# CONFIGURE -------------------------
+
+# make the config file
+HOSTNAME=$(hostname)
+
+SECRET="secret"
+OWNER="Some GuyorGal"
+OWNERURL="?"
+
+SITE="Awesome Sauce"
+
+SECRET="ruislip"
+OWNER="Dave Levy"
+OWNERURL="http://davelevy.info"
+
+sudo echo "
+{
+    \"driver\":  \"mongodb\",
+    \"params\":  {\"hostname\": \"localhost\"},
+    \"hostname\": \"${HOSTNAME}\",
+    \"secret\":  \"ruislip\",
+    \"noweb\":  false,
+    \"site\":  \"Awesome Sauce\",
+    \"owner\":  \"Dave Levy\",
+    \"ownerURL\":  \"http://davelevy.info/\",
+    \"port\":  80,
+    \"address\":  \"0.0.0.0\",
+    \"nologger\":  false,
+    \"logfile\": \"/var/log/pump/pumpio.log\",
+    \"serverUser\":  \"pump\",
+    \"debugClient\": false,
+    \"firehose\": \"ofirehose.example\"
+}"
+# >> /etc/pump.io.json
+
+# useradd pump
+

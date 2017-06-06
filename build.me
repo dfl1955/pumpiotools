@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# This installs mongo and pump.io
+
+# written Jun 2017
+
+apt-get update && apt-get upgrade
+
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
+
+echo "deb [ arch=amd64]  http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.4.list
+
+sudo apt-get update
+sudo apt-get install -y mongodb-org
+
+bash ./make.service
+
+#sudo service mongod start
+
+sudo apt-get install -y nodejs npm
+sudo ln /usr/bin/nodejs /usr/bin/node
+sudo apt-get install -y graphicsmagick git samba
+
+useradd pump
+
+sudo bash ./add.pump
+sudo bash ./make.pumpconf
+
+# sudo pump /usr/local/bin/pump
+
+make.pumpconf

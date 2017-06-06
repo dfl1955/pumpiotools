@@ -1,0 +1,11 @@
+
+This needs better modularisation. 
+
+The config file shoulod be parameterised and a seperately callable object.
+
+	bash ./make.service
+	sudo bash ./add.pump
+	sudo bash ./make.pumpconf
+
+DFL 6th June 2017
+London
