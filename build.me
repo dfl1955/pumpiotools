@@ -22,12 +22,13 @@ REPO="./pumpiotools"
 echo "$0 installing mongo service"
 bash ${REPO}/make.service
 
-echo "$0 diagnostics"
-ls -al /lib/systemd/system
-cat  /lib/systemd/system/mongod.service
+#echo "$0 diagnostics"
+#    ls -al /lib/systemd/system
+#    cat  /lib/systemd/system/mongod.service
 echo "$0 mongo service installed"
 
 systemctl enable mongod
+systemctl start mongod
 service mongod status
 
 exit
