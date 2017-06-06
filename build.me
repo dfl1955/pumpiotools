@@ -27,6 +27,7 @@ echo "$0 diagnostics"
     cat  /lib/systemd/system/mongod.service
 echo "$0 mongo service installed"
 
+export XDG_RUNTIME_DIR=/run/user/$(id -u)
 systemctl enable mongod
 systemctl start mongod
 
