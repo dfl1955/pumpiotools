@@ -17,7 +17,9 @@ apt-get install -y mongodb-org
 
 echo "$0 mongo db installed"
 
-bash ./make.service
+REPO="./pumpiotools"
+
+bash ${REPO}/make.service
 
 exit
 
