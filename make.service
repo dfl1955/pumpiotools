@@ -1,3 +1,4 @@
+set -x
 
 echo "[Unit]
 Description=High-performance, schema-free document-oriented database
