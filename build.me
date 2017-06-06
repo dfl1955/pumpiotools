@@ -4,7 +4,7 @@
 
 # written Jun 2017
 
-echo "Installing mongodb"
+echo "$0 installing mongodb"
 
 apt-get update && apt-get upgrade
 
@@ -15,13 +15,11 @@ echo "deb [ arch=amd64]  http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3
 apt-get update
 apt-get install -y mongodb-org
 
-echo "mongo db installed"
-
-exit
+echo "$0 mongo db installed"
 
 bash ./make.service
 
-
+exit
 
 #service mongod start
 
