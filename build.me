@@ -29,6 +29,10 @@ echo "$0 mongo service installed"
 
 export XDG_RUNTIME_DIR=/run/user/$(id -u)
 systemctl enable mongod
+systemctl restart systemd-logind.service
+
+echo "$0 ... starting mongod"
+
 systemctl start mongod
 
 exit
