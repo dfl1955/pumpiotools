@@ -8,6 +8,8 @@
 # make the config file
 HOSTNAME=$(hostname)
 
+HOSTNAME="ec2-52-49-14-6.eu-west-1.compute.amazonaws.com"
+
 SECRET="secret"
 OWNER="Some GuyorGal"
 OWNERURL="?"
@@ -17,6 +19,8 @@ SITE="Awesome Sauce"
 SECRET="ruislip"
 OWNER="Dave Levy"
 OWNERURL="http://davelevy.info"
+
+LOGLOCATION="/var/log/pump"
 
 sudo echo "
 {
@@ -31,13 +35,18 @@ sudo echo "
     \"port\":  80,
     \"address\":  \"0.0.0.0\",
     \"nologger\":  false,
-    \"logfile\": \"/var/log/pump/pumpio.log\",
+    \"logfile\": \"${LOGLOCATION}/pumpio.log\",
     \"serverUser\":  \"pump\",
     \"debugClient\": false,
     \"firehose\": \"ofirehose.example\"
-}"  >> /etc/pump.io.json
-
+}"  > /etc/pump.io.json
+ 
 cat /etc/pump.io.json
+
+if [ ! -d ${LOGLOCATION} ]; then
+	mkdir ${LOGLOCATION}
+	chown pump:pump ${LOGLOCATION}
+fi
 
 
 

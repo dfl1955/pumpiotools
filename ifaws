@@ -1,0 +1,8 @@
+# apt-get install -y cloud-guest-utils
+
+ec2metadata --public-ipv4 > /dev/null || exit -32
+
+hostname=$(nslookup $(ec2metadata --public-ipv4) | grep amazon | cut -f2 -d"=" | cut -c 2-)
+
+echo $hostname
+
