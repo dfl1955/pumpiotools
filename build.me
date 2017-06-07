@@ -34,7 +34,11 @@ echo "$0 ... installing nodejs"
 
 apt-get install -y nodejs npm
 ln /usr/bin/nodejs /usr/bin/node
+
 apt-get install -y graphicsmagick git samba
+
+# Ubuntu 16.04
+/etc/init.d/samba start
 
 useradd pump
 
