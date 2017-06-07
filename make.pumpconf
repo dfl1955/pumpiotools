@@ -35,8 +35,9 @@ sudo echo "
     \"serverUser\":  \"pump\",
     \"debugClient\": false,
     \"firehose\": \"ofirehose.example\"
-}"
-# >> /etc/pump.io.json
+}"  >> /etc/pump.io.json
 
-# useradd pump
+cat /etc/pump.io.json
+
+
 

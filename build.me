@@ -7,37 +7,30 @@
 echo "$0 installing mongodb"
 
 apt-get update && apt-get upgrade
-
 apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
-
 echo "deb [ arch=amd64]  http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-3.4.list
-
 apt-get update
 apt-get install -y mongodb-org
-
 echo "$0 mongo db installed"
 
-REPO="./pumpiotools"
+REPO="."
 
 echo "$0 installing mongo service"
 bash ${REPO}/make.service
 
-echo "$0 diagnostics"
-    ls -al /lib/systemd/system/mongod.service
-    cat  /lib/systemd/system/mongod.service
 echo "$0 mongo service installed"
 
-export XDG_RUNTIME_DIR=/run/user/$(id -u)
+#export XDG_RUNTIME_DIR=/run/user/$(id -u)
+
 systemctl enable mongod
 systemctl restart systemd-logind.service
 
 echo "$0 ... starting mongod"
 
 systemctl start mongod
-
-exit
-
 #service mongod start
+
+echo "$0 ... installing nodejs"
 
 apt-get install -y nodejs npm
 ln /usr/bin/nodejs /usr/bin/node
@@ -50,5 +43,4 @@ bash ./make.pumpconf
 
 # pump /usr/local/bin/pump
 
-/lib/systemd/system/mongod.service
 
