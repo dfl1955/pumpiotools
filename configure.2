@@ -1,0 +1,96 @@
+#!/bin/bash
+
+# Author Dave Levy	Date 19 Jun 2017 	Version 1.1
+
+
+# for parameters see the error message variable
+
+# if using environment variables then this program must be run using the source or . command
+
+ERROR="Error in command line arguments"
+USAGE=". ./configure [[ -p <install_root> ]|[ -x <'pump password'> ]|[ -o <'The Owner, a person' ]| [ -l log_location ]|[ -u <'Owner's web site URL'>]|[ -s <'Site Name'>]|[ -m host_name ]|[ -d]|[ -h ]]"
+
+ERROR_MESSAGE=". ./configure 
+     -p <install_root>
+     -x <'pump password'>
+     -o <'The Owner, a person'>
+     -l <log_location>
+     -u <'Owners web site URL'>
+     -s <'Site Name'>
+     -m <host_name> 
+     -d
+
+     -h "
+
+debug=false
+debugecho()
+{
+	[ $debug ] && echo $*
+}
+
+# Defaults
+
+export pt_HOSTNAME="ec2-52-49-14-6.eu-west-1.compute.amazonaws.com"
+export pt_HOSTNAME=$(hostname).$(domainname)
+
+export pt_SECRET="secret"
+export pt_OWNER="Some GuyorGal"
+export pt_OWNERURL="http://site.net"
+export pt_SITE="Awesome Sauce"          # Site Name
+
+export pt_OWNER="Dave Levy"
+export pt_OWNERURL="http://davelevy.info"
+
+export pt_LOGLOCATION=/var/log/pump
+export pt_INSTALLROOT=/opt/local
+
+# This may be better written using a loop, for i in $*
+# easier to have the -- flags implemented
+
+for i in $*
+do
+	:; # echo $i
+done
+ 
+while getopts "p:x:o:l:u:s:m:dh" arg
+do
+case $arg in
+p)	export pt_INSTALLROOT=${OPTARG}
+	echo -e "... pump install root aka prefix is set to \t ${pt_INSTALLROOT}"
+	;;
+x)	export pt_SECRET=${OPTARG}
+	echo -e "... pump password is set to \t\t\t ${pt_SECRET}"
+	;;
+o)	export pt_OWNER=${OPTARG} 
+	echo -e "... site owner is set to \t\t\t ${pt_OWNER}"
+	;;
+l)	export pt_LOGLOCATION=${OPTARG}
+	echo -e "... pump log location is set to \t\t ${pt_LOGLOCATION}"
+	;; 
+u)	export pt_OWNERURL=${OPTARG}
+	echo -e "... owner's site location is set to \t\t ${pt_OWNERURL}"
+	;;
+s)	export pt_SITE=${OPTARG} 
+	echo -e "... site name is set to \t\t\t ${pt_SITE}"
+	;;
+m)	export pt_HOSTNAME=${OPTARG} 
+	echo -e "... pump host name is set to \t\t\t ${pt_HOSTNAME}"
+	;;
+d)	debug=true 
+	debugecho debug set to $debug, reported by debugecho
+	;;
+h)	echo ${USAGE}
+	break 
+	;;
+-help)	echo ${ERROR_MESSAGE}
+	break 
+	;;
+*)	echo ${ERROR}; 
+	break 
+	;;
+esac
+done
+
+
+# does INSTALLROOT exist
+
